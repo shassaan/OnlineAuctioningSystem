@@ -1,0 +1,22 @@
+﻿<div class="form container">
+    <form>
+        <input type="hidden" name="userType"/>
+        <div class="row">
+            <div class="col">
+                <input type="hidden" name="userType" value="@ViewBag.userType" />
+                <input type="text" placeholder="Full Name" name="Name" class="form-control" />
+                <p class="text-danger" id="nameErr"></p>
+                <input type="text" placeholder="email e.g (abc@xyz.com)" name="Email" class="form-control"/>
+                <p class="text-danger" id="emailErr"></p>
+                <input type="password" placeholder="Set Password" name="" class="form-control"/><br />
+                <input type="password" placeholder="ReType to Confirm" name="Password" class="form-control"/>
+                <p class="text-danger" id="passwordErr"></p>
+                <hr />
+                <button class="btn btn-info btn-block" id="signupbtn">Sign up</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="~/JavaScript/Signup.js"></script>
+

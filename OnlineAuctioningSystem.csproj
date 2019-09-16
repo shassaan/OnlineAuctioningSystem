@@ -43,7 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -88,20 +96,84 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Loader.gif" />
+    <Content Include="DBModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DBModels.Context.cs</LastGenOutput>
+      <DependentUpon>DBModels.edmx</DependentUpon>
+    </Content>
+    <Content Include="DBModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModels.edmx</DependentUpon>
+      <LastGenOutput>DBModels.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="JavaScript\Navigation.js" />
+    <Content Include="JavaScript\Signup.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Bid.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Complaint.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Customer.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModels.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductImage.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <EntityDeploy Include="DBModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DBModels.edmx.diagram">
+      <DependentUpon>DBModels.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
-    <Content Include="Views\Shared\_adminLayout.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_SellerLayout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Navigation.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Signup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,8 +183,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
