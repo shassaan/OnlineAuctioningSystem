@@ -99,8 +99,8 @@
     <Content Include="Assets\Loader.gif" />
     <Content Include="DBModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBModels.Context.cs</LastGenOutput>
       <DependentUpon>DBModels.edmx</DependentUpon>
+      <LastGenOutput>DBModels.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DBModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

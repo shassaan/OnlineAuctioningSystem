@@ -10,7 +10,9 @@
             url: `/User/Signup`,
             data: JSON.stringify(data),
             success: (response) => {
-                console.log(response);
+                if (response === "success") {
+                    window.location.replace("/Home/Profile");
+                }
             }
         });
     });

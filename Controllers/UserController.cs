@@ -8,7 +8,7 @@ namespace OnlineAuctioningSystem.Controllers
 {
     public class UserController : Controller
     {
-        private readonly SecureOnlineActioningSystemEntities _db = new SecureOnlineActioningSystemEntities();
+        private readonly SecureOnlineActioningSystemEntities1 _db = new SecureOnlineActioningSystemEntities1();
         // GET: User
         /* this action will return either sign up or login
          * view according to that formType parameter
@@ -28,7 +28,8 @@ namespace OnlineAuctioningSystem.Controllers
             {
                 _db.Users.Add(user);
                 _db.SaveChanges();
-                return Json("succes", JsonRequestBehavior.AllowGet);
+                Session["currentUser"] = user.id;
+                return Json("success", JsonRequestBehavior.AllowGet);
             }
             else
             {

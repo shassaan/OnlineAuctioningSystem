@@ -13,10 +13,10 @@ namespace OnlineAuctioningSystem
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SecureOnlineActioningSystemEntities : DbContext
+    public partial class SecureOnlineActioningSystemEntities1 : DbContext
     {
-        public SecureOnlineActioningSystemEntities()
-            : base("name=SecureOnlineActioningSystemEntities")
+        public SecureOnlineActioningSystemEntities1()
+            : base("name=SecureOnlineActioningSystemEntities1")
         {
         }
     

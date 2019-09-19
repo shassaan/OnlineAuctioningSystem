@@ -353,7 +353,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SecureOnlineActioningSystemEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SecureOnlineActioningSystemEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bids" EntityType="Self.Bid" />
           <EntitySet Name="Complaints" EntityType="Self.Complaint" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
@@ -391,7 +391,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SecureOnlineActioningSystemModelStoreContainer" CdmEntityContainer="SecureOnlineActioningSystemEntities">
+        <EntityContainerMapping StorageEntityContainer="SecureOnlineActioningSystemModelStoreContainer" CdmEntityContainer="SecureOnlineActioningSystemEntities1">
           <EntitySetMapping Name="Bids">
             <EntityTypeMapping TypeName="SecureOnlineActioningSystemModel.Bid">
               <MappingFragment StoreEntitySet="Bid">
