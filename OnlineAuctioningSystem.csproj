@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\banner.jpg" />
     <Content Include="Assets\Loader.gif" />
     <Content Include="DBModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -110,10 +111,15 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="JavaScript\Navigation.js" />
+    <Content Include="JavaScript\notify.min.js" />
     <Content Include="JavaScript\Signup.js" />
+    <Content Include="Styles\index.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs">
+      <DependentUpon>DBModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bid.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
@@ -122,7 +128,6 @@
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
@@ -151,7 +156,7 @@
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs">
+    <Compile Include="Seller.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -172,6 +177,9 @@
     <Content Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Signup.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Banner.cshtml" />
+    <Content Include="Views\Shared\Auctions.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -182,6 +190,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

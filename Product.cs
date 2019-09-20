@@ -25,9 +25,9 @@ namespace OnlineAuctioningSystem
         public string Name { get; set; }
         public string Description { get; set; }
         public string displayPicture { get; set; }
-        public string startData { get; set; }
+        public Nullable<System.DateTime> startDate { get; set; }
         public Nullable<double> startPrice { get; set; }
-        public string endDate { get; set; }
+        public Nullable<System.DateTime> endDate { get; set; }
         public Nullable<bool> isDeleted { get; set; }
         public Nullable<bool> isSoldout { get; set; }
         public Nullable<double> currentPrice { get; set; }
@@ -35,7 +35,7 @@ namespace OnlineAuctioningSystem
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bid> Bids { get; set; }
-        public virtual User User { get; set; }
+        public virtual Seller Seller { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductImage> ProductImages { get; set; }
     }

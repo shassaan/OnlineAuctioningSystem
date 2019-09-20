@@ -13,10 +13,10 @@ namespace OnlineAuctioningSystem
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SecureOnlineAutioningSystemEntities : DbContext
+    public partial class OnlineAuctioning : DbContext
     {
-        public SecureOnlineAutioningSystemEntities()
-            : base("name=SecureOnlineAutioningSystemEntities")
+        public OnlineAuctioning()
+            : base("name=OnlineAuctioning")
         {
         }
     
@@ -25,11 +25,12 @@ namespace OnlineAuctioningSystem
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Bid> Bids { get; set; }
         public virtual DbSet<Complaint> Complaints { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductImage> ProductImages { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Seller> Sellers { get; set; }
     }
 }

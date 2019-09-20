@@ -1,0 +1,27 @@
+﻿@model List<Product>
+    @{OnlineAuctioning db = new OnlineAuctioning();}
+<div class="container">
+    <div class="row">
+        @foreach (var auction in Model)
+        {
+            <div class="col-md-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-responsive" src="~/Uploads/@auction.displayPicture"/>
+                        </div>
+                        <div class="col-md-8">
+                            <table class="table">
+                                <tr><td><p>@auction.Name</p></td><td><p class="text-danger">Ends on @auction.endDate</p></td></tr>
+                                <tr><td><p class="jumbotron">@auction.Description.Take(50)</p></td><td><p>Total Bids @db.Bids.Where(b => b.productId == auction.id).Count()</p></td></tr>
+                            </table>
+                            <div style="float:right;">
+                                <a href="/Products/Details?id=@auction.id">Details >></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

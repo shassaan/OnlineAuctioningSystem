@@ -22,6 +22,9 @@ namespace OnlineAuctioningSystem
         }
     
         public int id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
         public string LicenseNo { get; set; }
         public string PANNo { get; set; }
         public Nullable<bool> isApproved { get; set; }

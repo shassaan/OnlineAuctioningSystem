@@ -12,17 +12,11 @@ namespace OnlineAuctioningSystem
     using System;
     using System.Collections.Generic;
     
-    public partial class Complaint
+    public partial class Admin
     {
         public int id { get; set; }
-        public Nullable<int> buyerId { get; set; }
-        public Nullable<int> sellerId { get; set; }
-        public string Description { get; set; }
-        public string Subject { get; set; }
-        public Nullable<bool> isDeleted { get; set; }
-        public Nullable<int> Status { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual Seller Seller { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

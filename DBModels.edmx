@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SecureOnlineAutioningSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="OnlineAuctioningModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Bid">
           <Key>
             <PropertyRef Name="id" />
@@ -32,6 +41,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="300" />
           <Property Name="LicenseNo" Type="varchar" MaxLength="100" />
           <Property Name="PANNo" Type="varchar" MaxLength="10" />
           <Property Name="isApproved" Type="bit" />
@@ -45,9 +57,9 @@
           <Property Name="Name" Type="varchar" MaxLength="200" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="displayPicture" Type="varchar" MaxLength="100" />
-          <Property Name="startData" Type="varchar" MaxLength="100" />
+          <Property Name="startDate" Type="datetime" />
           <Property Name="startPrice" Type="float" />
-          <Property Name="endDate" Type="varchar" MaxLength="100" />
+          <Property Name="endDate" Type="datetime" />
           <Property Name="isDeleted" Type="bit" />
           <Property Name="isSoldout" Type="bit" />
           <Property Name="currentPrice" Type="float" />
@@ -62,15 +74,15 @@
           <Property Name="productId" Type="int" />
           <Property Name="isDeleted" Type="bit" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Seller">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
-          <Property Name="Password" Type="varchar" MaxLength="300" />
-          <Property Name="userType" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="isDeleted" Type="bit" />
         </EntityType>
         <Association Name="FK__Bid__customerId__1ED998B2">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
@@ -109,10 +121,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Complaint__selle__15502E78">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
           <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Seller">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Complaint">
@@ -121,10 +133,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__sellerI__182C9B23">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Seller">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Product">
@@ -144,13 +156,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SecureOnlineAutioningSystemModelStoreContainer">
+        <EntityContainer Name="OnlineAuctioningModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bid" EntityType="Self.Bid" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Complaint" EntityType="Self.Complaint" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductImage" EntityType="Self.ProductImage" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Bid__customerId__1ED998B2" Association="Self.FK__Bid__customerId__1ED998B2">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Bid" EntitySet="Bid" />
@@ -164,11 +177,11 @@
             <End Role="Complaint" EntitySet="Complaint" />
           </AssociationSet>
           <AssociationSet Name="FK__Complaint__selle__15502E78" Association="Self.FK__Complaint__selle__15502E78">
-            <End Role="User" EntitySet="User" />
+            <End Role="Seller" EntitySet="Seller" />
             <End Role="Complaint" EntitySet="Complaint" />
           </AssociationSet>
           <AssociationSet Name="FK__Product__sellerI__182C9B23" Association="Self.FK__Product__sellerI__182C9B23">
-            <End Role="User" EntitySet="User" />
+            <End Role="Seller" EntitySet="Seller" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductIm__produ__1B0907CE" Association="Self.FK__ProductIm__produ__1B0907CE">
@@ -180,7 +193,16 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SecureOnlineAutioningSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="OnlineAuctioningModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Bid">
           <Key>
             <PropertyRef Name="id" />
@@ -205,13 +227,16 @@
           <Property Name="isDeleted" Type="Boolean" />
           <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Complaint__buyer__145C0A3F" FromRole="Complaint" ToRole="Customer" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Complaint__selle__15502E78" FromRole="Complaint" ToRole="User" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK__Complaint__selle__15502E78" FromRole="Complaint" ToRole="Seller" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="LicenseNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PANNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="isApproved" Type="Boolean" />
@@ -227,15 +252,15 @@
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="displayPicture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="startData" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
           <Property Name="startPrice" Type="Double" />
-          <Property Name="endDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Boolean" />
           <Property Name="isSoldout" Type="Boolean" />
           <Property Name="currentPrice" Type="Double" />
           <Property Name="sellerId" Type="Int32" />
           <NavigationProperty Name="Bids" Relationship="Self.FK__Bid__productId__1DE57479" FromRole="Product" ToRole="Bid" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Product__sellerI__182C9B23" FromRole="Product" ToRole="User" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK__Product__sellerI__182C9B23" FromRole="Product" ToRole="Seller" />
           <NavigationProperty Name="ProductImages" Relationship="Self.FK__ProductIm__produ__1B0907CE" FromRole="Product" ToRole="ProductImage" />
         </EntityType>
         <EntityType Name="ProductImage">
@@ -248,17 +273,17 @@
           <Property Name="isDeleted" Type="Boolean" />
           <NavigationProperty Name="Product" Relationship="Self.FK__ProductIm__produ__1B0907CE" FromRole="ProductImage" ToRole="Product" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Seller">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="userType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Complaints" Relationship="Self.FK__Complaint__selle__15502E78" FromRole="User" ToRole="Complaint" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Product__sellerI__182C9B23" FromRole="User" ToRole="Product" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <NavigationProperty Name="Complaints" Relationship="Self.FK__Complaint__selle__15502E78" FromRole="Seller" ToRole="Complaint" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__sellerI__182C9B23" FromRole="Seller" ToRole="Product" />
         </EntityType>
         <Association Name="FK__Bid__customerId__1ED998B2">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
@@ -297,10 +322,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Complaint__selle__15502E78">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
           <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Seller">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Complaint">
@@ -309,10 +334,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__sellerI__182C9B23">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Seller">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Product">
@@ -332,13 +357,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SecureOnlineAutioningSystemEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="OnlineAuctioning" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Bids" EntityType="Self.Bid" />
           <EntitySet Name="Complaints" EntityType="Self.Complaint" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="ProductImages" EntityType="Self.ProductImage" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Sellers" EntityType="Self.Seller" />
           <AssociationSet Name="FK__Bid__customerId__1ED998B2" Association="Self.FK__Bid__customerId__1ED998B2">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Bid" EntitySet="Bids" />
@@ -352,11 +378,11 @@
             <End Role="Complaint" EntitySet="Complaints" />
           </AssociationSet>
           <AssociationSet Name="FK__Complaint__selle__15502E78" Association="Self.FK__Complaint__selle__15502E78">
-            <End Role="User" EntitySet="Users" />
+            <End Role="Seller" EntitySet="Sellers" />
             <End Role="Complaint" EntitySet="Complaints" />
           </AssociationSet>
           <AssociationSet Name="FK__Product__sellerI__182C9B23" Association="Self.FK__Product__sellerI__182C9B23">
-            <End Role="User" EntitySet="Users" />
+            <End Role="Seller" EntitySet="Sellers" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductIm__produ__1B0907CE" Association="Self.FK__ProductIm__produ__1B0907CE">
@@ -369,9 +395,19 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SecureOnlineAutioningSystemModelStoreContainer" CdmEntityContainer="SecureOnlineAutioningSystemEntities">
+        <EntityContainerMapping StorageEntityContainer="OnlineAuctioningModelStoreContainer" CdmEntityContainer="OnlineAuctioning">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="OnlineAuctioningModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Bids">
-            <EntityTypeMapping TypeName="SecureOnlineAutioningSystemModel.Bid">
+            <EntityTypeMapping TypeName="OnlineAuctioningModel.Bid">
               <MappingFragment StoreEntitySet="Bid">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
@@ -382,7 +418,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Complaints">
-            <EntityTypeMapping TypeName="SecureOnlineAutioningSystemModel.Complaint">
+            <EntityTypeMapping TypeName="OnlineAuctioningModel.Complaint">
               <MappingFragment StoreEntitySet="Complaint">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="buyerId" ColumnName="buyerId" />
@@ -395,9 +431,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="SecureOnlineAutioningSystemModel.Customer">
+            <EntityTypeMapping TypeName="OnlineAuctioningModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
                 <ScalarProperty Name="PANNo" ColumnName="PANNo" />
                 <ScalarProperty Name="isApproved" ColumnName="isApproved" />
@@ -406,13 +445,13 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="SecureOnlineAutioningSystemModel.Product">
+            <EntityTypeMapping TypeName="OnlineAuctioningModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="displayPicture" ColumnName="displayPicture" />
-                <ScalarProperty Name="startData" ColumnName="startData" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
                 <ScalarProperty Name="startPrice" ColumnName="startPrice" />
                 <ScalarProperty Name="endDate" ColumnName="endDate" />
                 <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
@@ -423,7 +462,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductImages">
-            <EntityTypeMapping TypeName="SecureOnlineAutioningSystemModel.ProductImage">
+            <EntityTypeMapping TypeName="OnlineAuctioningModel.ProductImage">
               <MappingFragment StoreEntitySet="ProductImage">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="image" ColumnName="image" />
@@ -432,14 +471,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="SecureOnlineAutioningSystemModel.User">
-              <MappingFragment StoreEntitySet="User">
+          <EntitySetMapping Name="Sellers">
+            <EntityTypeMapping TypeName="OnlineAuctioningModel.Seller">
+              <MappingFragment StoreEntitySet="Seller">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

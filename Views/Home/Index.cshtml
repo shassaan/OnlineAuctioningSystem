@@ -1,8 +1,13 @@
-﻿
+﻿@model List<Product>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/Styles/index.css" />
 @Html.Partial("Navigation")
-<h2>Index</h2>
+<div class="container">
+    @Html.Partial("Banner")
+    <h2>Auctions</h2>
+    @Html.Partial("Auctions",Model)
+</div>
 

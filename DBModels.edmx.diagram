@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a887b1a51dd941e6bd2a741f4dc62e35" Name="Diagram1">
-        <EntityTypeShape EntityType="SecureOnlineAutioningSystemModel.Bid" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecureOnlineAutioningSystemModel.Complaint" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecureOnlineAutioningSystemModel.Customer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecureOnlineAutioningSystemModel.Product" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecureOnlineAutioningSystemModel.ProductImage" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SecureOnlineAutioningSystemModel.User" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="SecureOnlineAutioningSystemModel.FK__Bid__customerId__1ED998B2" ManuallyRouted="false" />
-        <AssociationConnector Association="SecureOnlineAutioningSystemModel.FK__Bid__productId__1DE57479" ManuallyRouted="false" />
-        <AssociationConnector Association="SecureOnlineAutioningSystemModel.FK__Complaint__buyer__145C0A3F" ManuallyRouted="false" />
-        <AssociationConnector Association="SecureOnlineAutioningSystemModel.FK__Complaint__selle__15502E78" ManuallyRouted="false" />
-        <AssociationConnector Association="SecureOnlineAutioningSystemModel.FK__Product__sellerI__182C9B23" ManuallyRouted="false" />
-        <AssociationConnector Association="SecureOnlineAutioningSystemModel.FK__ProductIm__produ__1B0907CE" ManuallyRouted="false" />
+      <Diagram DiagramId="71c944d51a2c4d0bae51349c37bc103d" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineAuctioningModel.Admin" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctioningModel.Bid" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctioningModel.Complaint" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctioningModel.Customer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctioningModel.Product" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctioningModel.ProductImage" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineAuctioningModel.Seller" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="OnlineAuctioningModel.FK__Bid__customerId__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAuctioningModel.FK__Bid__productId__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAuctioningModel.FK__Complaint__buyer__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAuctioningModel.FK__Complaint__selle__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAuctioningModel.FK__Product__sellerI__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineAuctioningModel.FK__ProductIm__produ__1B0907CE" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

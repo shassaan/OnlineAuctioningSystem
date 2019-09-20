@@ -1,8 +1,8 @@
 ﻿$(document).ready((e) => {
     $('#signupbtn').click(function(e){
         e.preventDefault();
-        $('#signupbtn').html("signing in....");
-        $('#signupbtn').attr('disabled',true);
+        $('#signupbtn').attr('disabled', true);
+        $.notify("Signing up...", "success");
         let data = $('form').serialize();
         //console.log(data);
         $.ajax({
@@ -11,7 +11,7 @@
             data: JSON.stringify(data),
             success: (response) => {
                 if (response === "success") {
-                    window.location.replace("/Home/Profile");
+                    window.location.reload();
                 }
             }
         });
