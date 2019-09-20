@@ -8,7 +8,7 @@ namespace OnlineAuctioningSystem.Controllers
 {
     public class UserController : Controller
     {
-        private readonly SecureOnlineActioningSystemEntities1 _db = new SecureOnlineActioningSystemEntities1();
+        private readonly SecureOnlineAutioningSystemEntities _db = new SecureOnlineAutioningSystemEntities();
         // GET: User
         /* this action will return either sign up or login
          * view according to that formType parameter
